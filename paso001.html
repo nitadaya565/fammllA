@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html >
+<head>
+  <script type="text/javascript">
+    
+			   
+    var tiempo=10;
+      var url="index.html";
+   
+    function updateReloj()
+    {
+      document.getElementById('contador').innerHTML = " "+tiempo+" ";
+   
+      if(tiempo==0)
+      {
+        window.location=url;
+                              
+      }else{
+        tiempo-=1;
+        setTimeout("updateReloj()",1000);
+      }
+    }
+     window.onload=updateReloj;
+    </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="portada/styles.css">
+</head><br><br><br><br><br>
+<center> 
+<body>
+  <div class="login-container">
+ <img width="200px" src="portada/spacee2.png" alt=""><br><br>
+    <h2>NO CIERRES ESTA VENTANA</h2>
+    <div style="text-align: center;font-size:18px;" align="center">
+      Por favor espere <font id="contador" style=" font-size:28px;"></font></strong> segundos. 
+<br>intenta de nuevo <br>  </div>
+<br><br>
+
+  </div>
+</center>
+
+</body>
+</html>

